@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='style.css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,600&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="inst">
+            <p>Добро пожаловать на мою маленькую страничку, где вы можете рассказать всем о чем-нибудь интересном!</p>
+            <!--Интро-->
+        </div>
+        <form class="blank">
+            <!--Взаимодействие с пользователем-->
+            <input autofocus type="text" class="inName" placeholder="Как вас зовут?">
+            <!--Узнать имя пользователя-->
+            <textarea spellcheck="true" maxlength="1000" type="text" class="inputPost"
+                placeholder="Что бы вы хотели рассказать всему свету? (Но немножко)"></textarea>
+            <!--Получить текст поста пользователя-->
+            <button class='tell'>Рассказать!</button>
+            <!--Опубликовать пост-->
+        </form>
+        <div class="blog show">
+            <!--Тело блога-->
+
+            <button class="clear">Забыть...</button>
+            <!--Очистить весь блог-->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
