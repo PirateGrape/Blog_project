@@ -4,14 +4,14 @@ const newPost = document.querySelector('.inputPost'), //Достаем ввод 
     clearBlog = document.querySelector('.clear'), //Достаем кнопку для очистки блога
     newName = document.querySelector('.inName'); //Достаем ввод имени
 
-function hideBlog() { //Функция для скрытия блога, если в нем ничего нет
+function hideBlog() { //Функция для скрытия блога, если в нем ничего нет, кроме кнопки "Забыть"
     if (blog.childElementCount == 1) {
         blog.classList.add('show');
     }
 }
 
 function showBlog() { //Функция для показа блога, если в нем что-то есть
-    if (blog.childElementCount == 1) {
+    if (blog.childElementCount > 0) {
         blog.classList.remove('show');
     }
 }
