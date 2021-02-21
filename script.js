@@ -2,7 +2,8 @@ const newPost = document.querySelector('.inputPost'), //Достаем ввод 
     pubBtn = document.querySelector('.tell'), //Достаем кнопку публикации
     blog = document.querySelector('.blog'), //Достаем тело блога
     clearBlog = document.querySelector('.clear'), //Достаем кнопку для очистки блога
-    newName = document.querySelector('.inName'); //Достаем ввод имени
+    newName = document.querySelector('.inName'), //Достаем ввод имени
+    form = document.querySelector('.blank'); 
 
 function hideBlog() { //Функция для скрытия блога, если в нем ничего нет, кроме кнопки "Забыть"
     if (blog.childElementCount == 1) {
@@ -44,20 +45,27 @@ class NewPost { //Создаем шаблон для каждого поста
                     ${this.mes}
                 </div>`;
             blog.append(newMes); //Публикация нового поста
-            newName.value = ''; //Очистка полей ввода для нового поста
-            newPost.value = '';
+            form.reset(); //Очистка полей ввода для нового поста
         } else {
             alert('Не бывает безымянных авторов и не бывает пустых историй...'); //Защита от дурака
         }
     }
 }
 
-pubBtn.addEventListener('click', (e) => { //Активируем кнопку публикации
+form.addEventListener('submit', (e) => { //Активируем публикацию
     e.preventDefault();
     new NewPost(
             newName.value,
             newPost.value)
         .render(); //При помощи шаблона кадждый раз создаем новый пост и публикуем
+    
+    const newForm = new FormData(form);//Мои жалки попытки поработать с formData
+    const obj = {};
+    newForm.forEach((value, key) => {
+        obj[key] = value;
+    });
+    console.log(newForm);
+    console.log(obj);//Пока безуспешно
 
     let closeBtns = document.querySelectorAll('.close'); //Удаление поста
     closeBtns.forEach(btn => {
