@@ -1,5 +1,4 @@
 const newPost = document.querySelector('.inputPost'), //Достаем ввод текста
-    pubBtn = document.querySelector('.tell'), //Достаем кнопку публикации
     blog = document.querySelector('.blog'), //Достаем тело блога
     clearBlog = document.querySelector('.clear'), //Достаем кнопку для очистки блога
     newName = document.querySelector('.inName'), //Достаем ввод имени
@@ -17,6 +16,16 @@ function showBlog() { //Функция для показа блога, если 
     }
 }
 
+function serverPosting(form) {//Функция для отправки нового поста на сервер
+    const newPost = new FormData(form);
+    fetch('server.php', {
+        method: 'POST',
+        body: newPost,
+    }).catch(() => {
+        alert('Что-то пошло не так...');
+    });
+}
+
 
 class NewPost { //Создаем шаблон для каждого поста
     constructor(name, mes) {
@@ -31,7 +40,7 @@ class NewPost { //Создаем шаблон для каждого поста
         }
     }
 
-    render() { //Метод для публикации нового поста 
+    render() { //Метод для публикации нового поста на страницу
         if (this.name != '' && this.mes != '') { //Защита от дурака
             let newMes = document.createElement('div'); //Создание нового поста
             showBlog(); //Открываем тело блога
@@ -52,22 +61,18 @@ class NewPost { //Создаем шаблон для каждого поста
     }
 }
 
-form.addEventListener('submit', (e) => { //Активируем публикацию
+form.addEventListener('submit', (e) => { //Активируем публикацию и также отправку на сервер
     e.preventDefault();
+
+    serverPosting(form);
+    
     new NewPost(
             newName.value,
             newPost.value)
         .render(); //При помощи шаблона кадждый раз создаем новый пост и публикуем
     
-    const newForm = new FormData(form);//Мои жалки попытки поработать с formData
-    const obj = {};
-    newForm.forEach((value, key) => {
-        obj[key] = value;
-    });
-    console.log(newForm);
-    console.log(obj);//Пока безуспешно
 
-    let closeBtns = document.querySelectorAll('.close'); //Удаление поста
+    let closeBtns = document.querySelectorAll('.close'); //Активация кнопки удаление поста
     closeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             btn.parentElement.remove();
