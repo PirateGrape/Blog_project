@@ -1,3 +1,3 @@
-<?php
-$_POST = json_decode(file_get_contents("php://input"), true);
-echo var_dump($_POST);
+<?php/* Открываем пхп синтаксис */
+$_POST = json_decode(file_get_contents("php://input"), true);*С пост-запроса получаем жсон и декодируем его */
+echo var_dump($_POST);/*Видим получаемые с фронта данные в виде пассива данных пост */
